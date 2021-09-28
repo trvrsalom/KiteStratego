@@ -1,0 +1,70 @@
+<html>
+	<head>
+		<title>KiteGames</title>
+		<link rel="stylesheet" href="./css/bulma.css"/>
+	</head>
+	<body>
+		<div class="container" style="padding-top: 20px">
+  			<div class="notification">
+    				<h1 class="title">KiteGames</h1>
+    				<hr />
+    				<h1 class="subtitle">Login</h1>
+    				<form>
+						<div class="field">
+  							<label class="label">Username</label>
+  							<div class="control">
+    							<input class="input" type="text" >
+  							</div>
+						</div>
+						<div class="field">
+  							<label class="label">Password</label>
+  							<div class="control">
+    							<input class="input" type="password" >
+  							</div>
+						</div>
+						<button class="button is-primary">Login</button>
+					</form>
+					<hr />
+					<h1 class="subtitle">Create an Account</h1>
+						<div class="field">
+  							<label class="label">Username</label>
+  							<div class="control">
+    							<input class="input" type="text" >
+  							</div>
+						</div>
+						<div class="field">
+  							<label class="label">Password</label>
+  							<div class="notification is-danger is-light">
+  								Passwords are randomly generated and cannot be changed. Be sure to save it!
+							</div>
+  							<div class="control">
+    							<input class="input" id="password" readonly type="text">
+  							</div>
+						</div>
+						<button class="button is-primary" onclick="createAccount()">Create Account</button>
+			</div>
+		</div>
+		<script   src="https://code.jquery.com/jquery-3.6.0.js"   integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="   crossorigin="anonymous"></script>
+		<script>
+			var key = "61527881dfa7346e2f9690d3";
+			var url = "http://stratego-8d88.restdb.io/rest";
+		
+			$(function() {
+				var val = (Math.random() + 1).toString(36).substring(2);
+				console.log(val);
+				$("#password").val(val);
+			});
+			
+			var createAccount = function() {
+				console.log("Creating account");
+				searchUsers("drkite");
+			};
+			
+			var searchUsers = function(name) {
+				$.get(url + "/users?q={'username':'" + name + "'}&apikey=" + key, function(data) {
+					console.log(data)
+				})
+			}
+		</script>
+	</body>
+</html>
